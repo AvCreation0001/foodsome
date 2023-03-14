@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('location_link');
             $table->string('restaurant_image');
             $table->string('menu_images');
-            // $table->string('coupon')->nullable();
+            $table->string('restaurant_type');
             $table->timestamps();
         });
     }

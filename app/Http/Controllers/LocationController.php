@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Location;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use DB;
 
 class LocationController extends Controller
 {
@@ -36,7 +37,7 @@ class LocationController extends Controller
         $data = Location::all();
         return view('admin.viewlocation', compact('data'));
     }
-    /////////////////////////////////////////////////////////API START FROM HERE//////////////////////////////////////////////
+    /////////////////////////////////////////////////////////API START FROM HERE//////////////////////////////////////
     public function allLocations()
     {
         $data = Location::all();
@@ -45,5 +46,14 @@ class LocationController extends Controller
         } else {
             return ['success' => false, 'msg' => 'Data not found'];
         }
+    }
+    /////////////////////////////////////////////////////////WEBSITE//////////////////////////////////////////////
+    public function searchLocation(Request $req){
+
+
+        $results = DB::table('locations')
+        ->where('location_name','like','%'.$req->search.'%')
+             ->get();
+             return $results;
     }
 }

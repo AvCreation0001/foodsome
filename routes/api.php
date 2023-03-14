@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\RestaurantController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,8 +30,13 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(LocationController::class)->group(function () {
     Route::get('alllocations','allLocations');
     Route::post('login','login');
+    Route::post('searchLocation','searchLocation');
 });
 //UserController
 Route::controller(UserController::class)->group(function () {
     Route::post('login','login');
+});
+//RestaurantController
+Route::controller(RestaurantController::class)->group(function (){
+    Route::post('locationwiseRestaurant','locationwiseRestaurant');
 });
